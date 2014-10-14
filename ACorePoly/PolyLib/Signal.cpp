@@ -27,7 +27,7 @@ namespace ACorePolyLib
 	void Signal::FillData(int startIndex, int endIndex, const double * data)
 	{
 		if(startIndex < 0 || endIndex >= m_desc.N) {
-			// assert!!!
+			assert(!"Signal::FillData : Index Out Of Range, Operation Cancelled");
 			return;
 		}
 
@@ -35,23 +35,11 @@ namespace ACorePolyLib
 			m_signal[startIndex + i] = data[i];
 	}
 
-	template<typename DataStream>
-	void Signal::FillData(int startIndex, int endIndex, DataStream data)
-	{
-		if(startIndex < 0 || endIndex >= m_desc.N) {
-			// assert!!!
-			return;
-		}
-
-		for (int i = 0; i < endIndex - startIndex; ++i)
-			m_signal[startIndex + i] = data();
-	}
-
 	inline double Signal::operator[] (int ind) const
 	{
 		if (ind < 0 || ind > m_desc.N)
 		{
-			// assert!!!
+			assert(!"Signal::[] : Index Out Of Range, Operation Cancelled");
 			return 0;
 		}
 
@@ -62,7 +50,7 @@ namespace ACorePolyLib
 	{
 		if (ind < 0 || ind >= m_desc.N)
 		{
-			// assert!!!
+			assert(!"Signal::Set : Index Out Of Range, Operation Cancelled");
 			return;
 		}
 

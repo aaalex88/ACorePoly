@@ -24,6 +24,7 @@ namespace ACorePolyLib
 		Polynom(const vector<double> & coef);
 		~Polynom();
 
+		void Reset();
 		Polynom & operator=(const Polynom & poly);
 		// ==,
 		// +,+=,-,-=, *,*=,
@@ -32,7 +33,7 @@ namespace ACorePolyLib
 
 		double operator[] (int ind) const;
 		void SetCoef(int ind, double val);
-		int Power() const;
+		inline int Power() const;
 		double operator() (double x) const;
 		double MaxValueOnSegment(double start, double end, double dt = default_dt) const; // analitic computing should be realized
 		bool IsNull() const;
@@ -47,8 +48,8 @@ namespace ACorePolyLib
 
 	private:
 		vector<double> m_coef;
-		void DeleteTopZeros();
-		void ExpandToIndex(int ind);
+		inline void DeleteTopZeros();
+		inline void ExpandToIndex(int ind);
 		
 	};
 		

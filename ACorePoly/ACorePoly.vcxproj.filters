@@ -57,6 +57,12 @@
     <ClInclude Include="PolyLib\AmplSolver.h">
       <Filter>Заголовочные файлы\PolyLib</Filter>
     </ClInclude>
+    <ClInclude Include="PolyLib\ACoreSolver.h">
+      <Filter>Заголовочные файлы\PolyLib</Filter>
+    </ClInclude>
+    <ClInclude Include="PolyLib\SegmentSolver.h">
+      <Filter>Заголовочные файлы\PolyLib</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -75,6 +81,12 @@
       <Filter>Файлы исходного кода\PolyLib</Filter>
     </ClCompile>
     <ClCompile Include="PolyLib\PolyLibHelpers.cpp">
+      <Filter>Файлы исходного кода\PolyLib</Filter>
+    </ClCompile>
+    <ClCompile Include="PolyLib\AmplSolver.cpp">
+      <Filter>Файлы исходного кода\PolyLib</Filter>
+    </ClCompile>
+    <ClCompile Include="PolyLib\ACoreSolver.cpp">
       <Filter>Файлы исходного кода\PolyLib</Filter>
     </ClCompile>
   </ItemGroup>

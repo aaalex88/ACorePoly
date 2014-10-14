@@ -45,4 +45,17 @@ namespace ACorePolyLib
 		double GetNorm() const;
 	};
 
+
+	template<typename DataStream>
+	void Signal::FillData(int startIndex, int endIndex, DataStream data)
+	{
+		if(startIndex < 0 || endIndex >= m_desc.N) {
+			// assert!!!
+			return;
+		}
+
+		for (int i = 0; i < endIndex - startIndex; ++i)
+			m_signal[startIndex + i] = data();
+	}
+
 };

@@ -82,11 +82,13 @@
   <ItemGroup>
     <ClInclude Include="PolyLib\ACore.h" />
     <ClInclude Include="PolyLib\ACorePolyLib.h" />
+    <ClInclude Include="PolyLib\ACoreSolver.h" />
     <ClInclude Include="PolyLib\AmplSolver.h" />
     <ClInclude Include="PolyLib\Descriptions.h" />
     <ClInclude Include="PolyLib\ILinearSolver.h" />
     <ClInclude Include="PolyLib\PolyLibHelpers.h" />
     <ClInclude Include="PolyLib\Polynom.h" />
+    <ClInclude Include="PolyLib\SegmentSolver.h" />
     <ClInclude Include="PolyLib\Signal.h" />
     <ClInclude Include="PolyLib\SignalSolver.h" />
     <ClInclude Include="stdafx.h" />
@@ -95,6 +97,8 @@
   <ItemGroup>
     <ClCompile Include="ACorePoly.cpp" />
     <ClCompile Include="PolyLib\ACorePolyLib.cpp" />
+    <ClCompile Include="PolyLib\ACoreSolver.cpp" />
+    <ClCompile Include="PolyLib\AmplSolver.cpp" />
     <ClCompile Include="PolyLib\PolyLibHelpers.cpp" />
     <ClCompile Include="PolyLib\Polynom.cpp" />
     <ClCompile Include="PolyLib\Signal.cpp" />

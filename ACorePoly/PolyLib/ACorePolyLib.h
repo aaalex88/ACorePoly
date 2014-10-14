@@ -23,14 +23,6 @@ namespace ACorePolyLib
 {
 
 
-	class ACoreSolver : public ILinearSolver<ACore>
-	{
-	};
-
-	class SegmentSolver : public ILinearSolver<SegmentDescription>
-	{
-	};
-
 
 };
 

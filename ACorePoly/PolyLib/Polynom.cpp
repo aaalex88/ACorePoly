@@ -29,6 +29,11 @@ namespace ACorePolyLib
 	}
 
 
+	void Polynom::Reset()
+	{
+		m_coef.clear();
+	}
+
 	Polynom & Polynom::operator=(const Polynom & poly)
 	{
 		m_coef = poly.m_coef;
@@ -57,6 +62,9 @@ namespace ACorePolyLib
 			// assert!!!
 			return;
 		}
+
+		if (ind > Power() && AlmostZero(val))
+			return;
 
 		ExpandToIndex(ind);
 		m_coef[ind] = val;
@@ -142,12 +150,12 @@ namespace ACorePolyLib
 	}
 
 
-	void Polynom::DeleteTopZeros()
+	inline void Polynom::DeleteTopZeros()
 	{
 		while (m_coef.size() > 0 && AlmostZero(m_coef[m_coef.size() - 1]) )
 			m_coef.pop_back();
 	}
-	void Polynom::ExpandToIndex(int ind)
+	inline void Polynom::ExpandToIndex(int ind)
 	{
 		while (m_coef.size() <= ind)
 			m_coef.push_back(0);
