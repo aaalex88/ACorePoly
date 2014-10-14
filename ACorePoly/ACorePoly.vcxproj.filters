@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Файлы исходного кода">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Заголовочные файлы">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Файлы ресурсов">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Заголовочные файлы\PolyLib">
+      <UniqueIdentifier>{010d7759-9557-4cdc-a564-25c065da5bfd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы исходного кода\PolyLib">
+      <UniqueIdentifier>{7a3e5976-846b-47d9-ba1c-5f21b397917f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="PolyLib\ACore.h">
+      <Filter>Заголовочные файлы\PolyLib</Filter>
+    </ClInclude>
+    <ClInclude Include="PolyLib\ACorePolyLib.h">
+      <Filter>Заголовочные файлы\PolyLib</Filter>
+    </ClInclude>
+    <ClInclude Include="PolyLib\Descriptions.h">
+      <Filter>Заголовочные файлы\PolyLib</Filter>
+    </ClInclude>
+    <ClInclude Include="PolyLib\PolyLibHelpers.h">
+      <Filter>Заголовочные файлы\PolyLib</Filter>
+    </ClInclude>
+    <ClInclude Include="PolyLib\Polynom.h">
+      <Filter>Заголовочные файлы\PolyLib</Filter>
+    </ClInclude>
+    <ClInclude Include="PolyLib\Signal.h">
+      <Filter>Заголовочные файлы\PolyLib</Filter>
+    </ClInclude>
+    <ClInclude Include="PolyLib\SignalSolver.h">
+      <Filter>Заголовочные файлы\PolyLib</Filter>
+    </ClInclude>
+    <ClInclude Include="PolyLib\ILinearSolver.h">
+      <Filter>Заголовочные файлы\PolyLib</Filter>
+    </ClInclude>
+    <ClInclude Include="PolyLib\AmplSolver.h">
+      <Filter>Заголовочные файлы\PolyLib</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="ACorePoly.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="PolyLib\ACorePolyLib.cpp">
+      <Filter>Файлы исходного кода\PolyLib</Filter>
+    </ClCompile>
+    <ClCompile Include="PolyLib\Signal.cpp">
+      <Filter>Файлы исходного кода\PolyLib</Filter>
+    </ClCompile>
+    <ClCompile Include="PolyLib\Polynom.cpp">
+      <Filter>Файлы исходного кода\PolyLib</Filter>
+    </ClCompile>
+    <ClCompile Include="PolyLib\PolyLibHelpers.cpp">
+      <Filter>Файлы исходного кода\PolyLib</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
