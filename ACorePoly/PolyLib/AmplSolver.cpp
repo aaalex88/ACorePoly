@@ -1,4 +1,4 @@
-
+#include <stdafx.h>
 
 #include "AmplSolver.h"
 #include <math.h>
@@ -20,7 +20,7 @@ namespace ACorePolyLib
 		return m_ampPow + 1;
 	}
 
-	void AmplSolver::FillBasis(int N, double dt, const double * phase, int k, double * basis) const
+	void AmplSolver::FillBasis(int N, const double * phase, int k, double * basis) const
 	{
 		int i;
 		for (i = 0; i < N; ++i)
@@ -58,7 +58,7 @@ namespace ACorePolyLib
 		return 2;
 	}
 
-	void ConstAmplSolver::FillBasis(int N, double dt, const double * phase, int k, double * basis) const
+	void ConstAmplSolver::FillBasis(int N, const double * phase, int k, double * basis) const
 	{
 		for (int i = 0; i < N; ++i)
 		{

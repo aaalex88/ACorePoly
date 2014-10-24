@@ -1,3 +1,4 @@
+#include <stdafx.h>
 
 #include <math.h>
 #include "Signal.h"
@@ -33,6 +34,30 @@ namespace ACorePolyLib
 
 		for (int i = 0; i < endIndex - startIndex; ++i)
 			m_signal[startIndex + i] = data[i];
+	}
+
+	void Signal::Reset()
+	{
+		for (int i = 0; i < m_desc.N; ++i)
+			m_signal[i] = 0;
+	}
+
+	void Signal::Add(const double * data)
+	{
+		for (int i = 0; i < m_desc.N; ++i)
+			m_signal[i] += data[i];
+	}
+
+	void Signal::Substract(const double * data)
+	{
+		for (int i = 0; i < m_desc.N; ++i)
+			m_signal[i] -= data[i];
+	}
+
+	void Signal::Invert()
+	{
+		for (int i = 0; i < m_desc.N; ++i)
+			m_signal[i] = -m_signal[i];
 	}
 
 	inline double Signal::operator[] (int ind) const

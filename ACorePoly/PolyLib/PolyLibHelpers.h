@@ -38,5 +38,6 @@ namespace ACorePolyLib
 
 	bool AlmostZero(double d);
 	double ComputePhase(double cosAmp, double sinAmp);
+	double Factorial(int n);
 
 };

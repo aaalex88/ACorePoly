@@ -11,7 +11,7 @@ namespace ACorePolyLib
 	{
 	public:
 		virtual int GetDim() const = 0;
-		virtual void FillBasis(int N, double dt, const double * phase, int k, double * basis) const = 0;
+		virtual void FillBasis(int N, const double * phase, int k, double * basis) const = 0;
 		virtual void ReadResults(const double * res) const = 0;
 	};
 
@@ -22,7 +22,7 @@ namespace ACorePolyLib
 		AmplSolver(int ampPow, double ph0, Polynom & resultAmpl);
 		~AmplSolver() {}
 		int GetDim() const;
-		void FillBasis(int N, double dt, const double * phase, int k, double * basis) const;
+		void FillBasis(int N, const double * phase, int k, double * basis) const;
 		void ReadResults(const double * res) const;
 
 	private:
@@ -39,7 +39,7 @@ namespace ACorePolyLib
 		ConstAmplSolver(double & ph0, Polynom & resultAmpl);
 		~ConstAmplSolver() {}
 		int GetDim() const;
-		void FillBasis(int N, double dt, const double * phase, int k, double * basis) const;
+		void FillBasis(int N, const double * phase, int k, double * basis) const;
 		void ReadResults(const double * res) const;
 
 	private:

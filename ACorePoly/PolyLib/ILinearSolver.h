@@ -9,6 +9,6 @@ namespace ACorePolyLib
 	public:
 		virtual int GetDim() const = 0;
 		virtual void FillBasis(int N, double dt, double * basis) const = 0;
-		virtual T ReadResults(const double * res) const = 0;
+		virtual const T & ReadResults(const double * res) const = 0;
 	};
 };

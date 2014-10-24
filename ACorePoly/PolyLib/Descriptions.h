@@ -4,7 +4,7 @@
 #include <vector>
 
 #include "Polynom.h"
-#include "ACore.h"
+
 
 using namespace std;
 
@@ -13,41 +13,77 @@ using namespace std;
 
 namespace ACorePolyLib
 {
+	struct ACore;
 
-	struct ACoreParams
-	{
-		int freqPower;
-		int ampPower;
-		int maxAmpl;
-	};
+	struct ACoreOptParamsDesc;
 
 	struct ACoreOptParams
 	{
 		Polynom freq;
 		vector<double> phases;
-	};
+		int ampPower;
+		int maxAmpl;
 
-	struct SegmentDescription
-	{
-		SignalDescription desc;
-		vector<ACore> cores;
-	};
+		ACoreOptParams(const Polynom & _freq, const vector<double> & _phases, int _maxAmpl, int _ampPower);
+		ACoreOptParams(const ACoreOptParamsDesc & desc, double * data);
+		ACoreOptParams(const ACoreOptParamsDesc & desc, vector<double> data);
+		template<typename Iter>
+		ACoreOptParams(const ACoreOptParamsDesc & desc, Iter it);
+		ACoreOptParams(const ACoreOptParams & opt);
+		
+		ACoreOptParamsDesc GetDescription() const;
+		vector<double> GetOptData() const;
 
-	struct SegmentOptParams
-	{
-		vector<ACoreOptParams> param;
+		ACoreOptParams TimeShift(double shift) const;
 	};
 
 	struct ACoreOptParamsDesc
 	{
 		int freqPow;
 		int numPhases;
+		int ampPower;
+		int maxAmpl;
+
+		ACoreOptParamsDesc(int _freqPow, int _numPhases, int _ampPower, int _maxAmpl);
 	};
 
+
+
+	struct SegmentOptParamsDesc;
+
+	struct SegmentOptParams
+	{
+		vector<ACoreOptParams> param;
+		
+		SegmentOptParams() {}
+		SegmentOptParams(const SegmentOptParamsDesc & desc, double * data);
+		SegmentOptParams(const SegmentOptParamsDesc & desc, vector<double> & data);
+				
+		SegmentOptParamsDesc GetDescription() const;
+		vector<double> GetOptData() const;
+		SegmentOptParams TimeShift(double shift) const;
+
+		SegmentOptParams & operator+= (const SegmentOptParams & other) const;
+	};
+	
 	struct SegmentOptParamsDesc
 	{
-		int numCores;
 		vector<ACoreOptParamsDesc> coreDesc;
 	};
+	
 
+
+	template<typename Iter>
+	ACoreOptParams::ACoreOptParams(const ACoreOptParamsDesc & desc, Iter it)
+	{
+		freq = Polynom(desc.freqPow, it);
+		it += desc.freqPow;
+		for (int i = 0; i < desc.numPhases; ++i)
+		{
+			phases.push_back(*it);
+			it++;
+		}
+		maxAmpl = desc.maxAmpl;
+		ampPower = desc.ampPower;
+	}
 };

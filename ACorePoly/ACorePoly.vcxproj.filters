@@ -63,6 +63,15 @@
     <ClInclude Include="PolyLib\SegmentSolver.h">
       <Filter>Заголовочные файлы\PolyLib</Filter>
     </ClInclude>
+    <ClInclude Include="PolyLib\SegmentDescription.h">
+      <Filter>Заголовочные файлы\PolyLib</Filter>
+    </ClInclude>
+    <ClInclude Include="PolyLib\DescriptionBuilder.h">
+      <Filter>Заголовочные файлы\PolyLib</Filter>
+    </ClInclude>
+    <ClInclude Include="PolyLib\Optimisation.h">
+      <Filter>Заголовочные файлы\PolyLib</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -87,6 +96,27 @@
       <Filter>Файлы исходного кода\PolyLib</Filter>
     </ClCompile>
     <ClCompile Include="PolyLib\ACoreSolver.cpp">
+      <Filter>Файлы исходного кода\PolyLib</Filter>
+    </ClCompile>
+    <ClCompile Include="PolyLib\SegmentSolver.cpp">
+      <Filter>Файлы исходного кода\PolyLib</Filter>
+    </ClCompile>
+    <ClCompile Include="PolyLib\ACore.cpp">
+      <Filter>Файлы исходного кода\PolyLib</Filter>
+    </ClCompile>
+    <ClCompile Include="PolyLib\Descriptions.cpp">
+      <Filter>Файлы исходного кода\PolyLib</Filter>
+    </ClCompile>
+    <ClCompile Include="PolyLib\SegmentDescription.cpp">
+      <Filter>Файлы исходного кода\PolyLib</Filter>
+    </ClCompile>
+    <ClCompile Include="PolyLib\DescriptionBuilder.cpp">
+      <Filter>Файлы исходного кода\PolyLib</Filter>
+    </ClCompile>
+    <ClCompile Include="PolyLib\SignalSolver.cpp">
+      <Filter>Файлы исходного кода\PolyLib</Filter>
+    </ClCompile>
+    <ClCompile Include="PolyLib\Optimisation.cpp">
       <Filter>Файлы исходного кода\PolyLib</Filter>
     </ClCompile>
   </ItemGroup>

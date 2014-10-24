@@ -12,6 +12,11 @@
 #include "SignalSolver.h"
 #include "ILinearSolver.h"
 #include "AmplSolver.h"
+#include "ACoreSolver.h"
+#include "SegmentSolver.h"
+#include "SegmentDescription.h"
+#include "DescriptionBuilder.h"
+#include "Optimisation.h"
 
 using namespace std;
 using namespace std::tr1;
@@ -22,7 +27,7 @@ using namespace std::tr1;
 namespace ACorePolyLib
 {
 
-
+	
 
 };
 

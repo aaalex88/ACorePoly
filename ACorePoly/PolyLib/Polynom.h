@@ -14,14 +14,13 @@ namespace ACorePolyLib
 
 	class Polynom
 	{
-	private:
-
-		static const double default_dt;
-
 	public:
 		Polynom();
 		Polynom(const Polynom & poly);
 		Polynom(const vector<double> & coef);
+		Polynom(int n, const double * coef);
+		template<typename Iter>
+		Polynom(int n, Iter it);
 		~Polynom();
 
 		void Reset();
@@ -35,11 +34,12 @@ namespace ACorePolyLib
 		void SetCoef(int ind, double val);
 		inline int Power() const;
 		double operator() (double x) const;
-		double MaxValueOnSegment(double start, double end, double dt = default_dt) const; // analitic computing should be realized
+		double MaxValueOnSegment(double start, double end, double dt) const; // analitic computing should be realized
 		bool IsNull() const;
 
-		Polynom Integrate(); // defined integral with zero start value
-		Polynom Differenciate();
+		Polynom Integrate() const; // defined integral with zero start value
+		Polynom Differenciate() const;
+		Polynom TimeShift(double shift) const;
 
 		void FillSignal(Signal & signal) const;
 		void AddToSignal(Signal & signal) const;
@@ -52,6 +52,17 @@ namespace ACorePolyLib
 		inline void ExpandToIndex(int ind);
 		
 	};
+
+
+	template<typename Iter>
+	Polynom::Polynom(int n, Iter it)
+	{
+		for (int i = 0; i < n; ++i)
+		{
+			m_coef.push_back(*it);
+			it++;
+		}
+	}
 		
 
 };

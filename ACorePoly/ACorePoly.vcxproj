@@ -41,6 +41,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);$(ProjectDir);</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -84,10 +85,13 @@
     <ClInclude Include="PolyLib\ACorePolyLib.h" />
     <ClInclude Include="PolyLib\ACoreSolver.h" />
     <ClInclude Include="PolyLib\AmplSolver.h" />
+    <ClInclude Include="PolyLib\DescriptionBuilder.h" />
     <ClInclude Include="PolyLib\Descriptions.h" />
     <ClInclude Include="PolyLib\ILinearSolver.h" />
+    <ClInclude Include="PolyLib\Optimisation.h" />
     <ClInclude Include="PolyLib\PolyLibHelpers.h" />
     <ClInclude Include="PolyLib\Polynom.h" />
+    <ClInclude Include="PolyLib\SegmentDescription.h" />
     <ClInclude Include="PolyLib\SegmentSolver.h" />
     <ClInclude Include="PolyLib\Signal.h" />
     <ClInclude Include="PolyLib\SignalSolver.h" />
@@ -96,12 +100,19 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ACorePoly.cpp" />
+    <ClCompile Include="PolyLib\ACore.cpp" />
     <ClCompile Include="PolyLib\ACorePolyLib.cpp" />
     <ClCompile Include="PolyLib\ACoreSolver.cpp" />
     <ClCompile Include="PolyLib\AmplSolver.cpp" />
+    <ClCompile Include="PolyLib\DescriptionBuilder.cpp" />
+    <ClCompile Include="PolyLib\Descriptions.cpp" />
+    <ClCompile Include="PolyLib\Optimisation.cpp" />
     <ClCompile Include="PolyLib\PolyLibHelpers.cpp" />
     <ClCompile Include="PolyLib\Polynom.cpp" />
+    <ClCompile Include="PolyLib\SegmentDescription.cpp" />
+    <ClCompile Include="PolyLib\SegmentSolver.cpp" />
     <ClCompile Include="PolyLib\Signal.cpp" />
+    <ClCompile Include="PolyLib\SignalSolver.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>

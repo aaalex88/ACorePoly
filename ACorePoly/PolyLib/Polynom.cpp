@@ -1,4 +1,4 @@
-
+#include <stdafx.h>
 
 #include "Polynom.h"
 #include "PolyLibHelpers.h"
@@ -7,7 +7,6 @@
 
 namespace ACorePolyLib
 {
-	const double Polynom::default_dt = 10.0f / 44100.0f;
 
 	Polynom::Polynom()
 	{
@@ -22,6 +21,12 @@ namespace ACorePolyLib
 	{
 		m_coef = coef;
 		DeleteTopZeros();
+	}
+
+	Polynom::Polynom(int n, const double * coef)
+	{
+		for (int i = 0; i < n; ++i)
+			m_coef.push_back(coef[i]);
 	}
 
 	Polynom::~Polynom()
@@ -45,7 +50,7 @@ namespace ACorePolyLib
 	{
 		if (ind < 0)
 		{
-			// assert!!!
+			assert(!"Polynom::[] : negative index");
 			return 0;
 		}
 
@@ -59,7 +64,7 @@ namespace ACorePolyLib
 	{
 		if (ind < 0)
 		{
-			// assert!!!
+			assert(!"Polynom::SetCoef : negative index");
 			return;
 		}
 
@@ -104,7 +109,7 @@ namespace ACorePolyLib
 	}
 
 
-	Polynom Polynom::Integrate()
+	Polynom Polynom::Integrate() const
 	{
 		vector<double> v;
 		v.push_back(0);
@@ -115,7 +120,7 @@ namespace ACorePolyLib
 		return Polynom(v);
 	}
 
-	Polynom Polynom::Differenciate()
+	Polynom Polynom::Differenciate() const
 	{
 		vector<double> v;
 		for (int i = 1; i < m_coef.size(); ++i)
@@ -125,14 +130,27 @@ namespace ACorePolyLib
 		return Polynom(v);
 	}
 
+	Polynom Polynom::TimeShift(double shift) const
+	{
+		vector<double> v;
+		Polynom p(*this);
+		for (int i = 0; i <= Power(); ++i)
+		{
+			v.push_back(p(shift) / double(Factorial(i)));
+			p = p.Differenciate();
+		}
+		return Polynom(v);
+	}
+
 
 	void Polynom::FillSignal(Signal & signal) const
 	{
 		int ind = 0;
 		int N = signal.GetDesc().N;
+		double st = signal.GetDesc().startTime;
 		double dt = signal.GetDesc().dt;
 		signal.FillData(0, N, [&](){ 
-			double res = (*this)( ind * dt );
+			double res = (*this)( st + ind * dt );
 			ind++;
 			return res;
 		});
@@ -141,11 +159,12 @@ namespace ACorePolyLib
 	void Polynom::AddToSignal(Signal & signal) const
 	{
 		int N = signal.GetDesc().N;
+		double st = signal.GetDesc().startTime;
 		double dt = signal.GetDesc().dt;
 		double * data = signal.GetData();
 		for (int i = 0; i < N; ++i)
 		{
-			data[i] += (*this)(i * dt);
+			data[i] += (*this)(st + i * dt);
 		}
 	}
 

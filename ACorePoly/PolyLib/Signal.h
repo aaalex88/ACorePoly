@@ -9,6 +9,9 @@ namespace ACorePolyLib
 
 	struct SignalDescription
 	{
+		SignalDescription() : N(0), dt(0), startTime(0) {}
+		SignalDescription(int _N, double _dt, double _st);
+
 		int		N;
 		double	dt;
 		double	startTime;
@@ -36,6 +39,11 @@ namespace ACorePolyLib
 		void FillData(int startIndex, int endIndex, const double * data); // copy data to signal: m_signal[st..en-1] = data[0..en-st-1]
 		template<typename DataStream>
 		void FillData(int startIndex, int endIndex, DataStream data); // m_signal[i] = data();
+		void Reset();
+
+		void Add(const double * data);
+		void Substract(const double * data);
+		void Invert();
 
 		inline double operator[] (int ind) const;
 		inline void Set(int ind, double val);
