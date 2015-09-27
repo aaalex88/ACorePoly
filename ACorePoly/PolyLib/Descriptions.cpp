@@ -7,7 +7,7 @@ namespace ACorePolyLib
 
 	SegmentOptParams::SegmentOptParams(const SegmentOptParamsDesc & desc, double * data)
 	{
-		for (int i = 0; i < desc.coreDesc.size(); ++i)
+		for (size_t i = 0; i < desc.coreDesc.size(); ++i)
 		{
 			ACoreOptParams opt(desc.coreDesc[i], data);
 			param.push_back(opt);
@@ -18,7 +18,7 @@ namespace ACorePolyLib
 	SegmentOptParams::SegmentOptParams(const SegmentOptParamsDesc & desc, vector<double> & data)
 	{
 		auto it = data.begin();
-		for (int i = 0; i < desc.coreDesc.size(); ++i)
+		for (size_t i = 0; i < desc.coreDesc.size(); ++i)
 		{
 			ACoreOptParams opt(desc.coreDesc[i], it);
 			param.push_back(opt);
@@ -30,7 +30,7 @@ namespace ACorePolyLib
 	SegmentOptParamsDesc SegmentOptParams::GetDescription() const
 	{
 		SegmentOptParamsDesc desc;
-		for (int i = 0; i < param.size(); ++i)
+		for (size_t i = 0; i < param.size(); ++i)
 		{
 			desc.coreDesc.push_back(param[i].GetDescription());
 		}
@@ -40,7 +40,7 @@ namespace ACorePolyLib
 	vector<double> SegmentOptParams::GetOptData() const
 	{
 		vector<double> res;
-		for (int i = 0; i < param.size(); ++i)
+		for (size_t i = 0; i < param.size(); ++i)
 		{
 			vector<double> addVec = param[i].GetOptData();
 			res.insert(res.end(), addVec.begin(), addVec.end());
@@ -51,15 +51,19 @@ namespace ACorePolyLib
 	SegmentOptParams SegmentOptParams::TimeShift(double shift) const
 	{
 		SegmentOptParams par;
-		for (int i = 0; i < param.size(); ++i)
+		for (size_t i = 0; i < param.size(); ++i)
 		{
 			par.param.push_back(param[i].TimeShift(shift));
 		}
 		return par;
 	}
 
-	SegmentOptParams & SegmentOptParams::operator+= (const SegmentOptParams & other) const
+	SegmentOptParams & SegmentOptParams::operator+= (const SegmentOptParams & other)
 	{
+		// TODO: implement!
+		throw;
+
+		return *this;
 	}
 
 	ACoreOptParams::ACoreOptParams(const Polynom & _freq, const vector<double> & _phases, int _maxAmpl, int _ampPower)
@@ -105,7 +109,7 @@ namespace ACorePolyLib
 		vector<double> res;
 		for(int i = 0; i <= freq.Power(); ++i)
 			res.push_back(freq[i]);
-		for(int i = 0; i < phases.size(); ++i)
+		for(size_t i = 0; i < phases.size(); ++i)
 			res.push_back(phases[i]);
 		return res;
 	}
@@ -115,7 +119,7 @@ namespace ACorePolyLib
 		double phaseShift = (freq.Integrate())(shift);
 		vector<double> ph;
 
-		for(int i = 0; i < phases.size(); ++i)
+		for(size_t i = 0; i < phases.size(); ++i)
 		{
 			double newPh = phases[i] + (i+1) * phaseShift;
 			while (newPh > pi_2)

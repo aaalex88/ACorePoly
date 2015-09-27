@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -19,13 +19,13 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -41,7 +41,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);$(ProjectDir);</IncludePath>
+    <IncludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);$(ProjectDir);$(VC_IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -81,6 +81,19 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AlgLib\alglibinternal.h" />
+    <ClInclude Include="AlgLib\alglibmisc.h" />
+    <ClInclude Include="AlgLib\ap.h" />
+    <ClInclude Include="AlgLib\dataanalysis.h" />
+    <ClInclude Include="AlgLib\diffequations.h" />
+    <ClInclude Include="AlgLib\fasttransforms.h" />
+    <ClInclude Include="AlgLib\integration.h" />
+    <ClInclude Include="AlgLib\interpolation.h" />
+    <ClInclude Include="AlgLib\linalg.h" />
+    <ClInclude Include="AlgLib\optimization.h" />
+    <ClInclude Include="AlgLib\solvers.h" />
+    <ClInclude Include="AlgLib\specialfunctions.h" />
+    <ClInclude Include="AlgLib\statistics.h" />
     <ClInclude Include="PolyLib\ACore.h" />
     <ClInclude Include="PolyLib\ACorePolyLib.h" />
     <ClInclude Include="PolyLib\ACoreSolver.h" />
@@ -97,9 +110,23 @@
     <ClInclude Include="PolyLib\SignalSolver.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="Tests\Tests.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ACorePoly.cpp" />
+    <ClCompile Include="AlgLib\alglibinternal.cpp" />
+    <ClCompile Include="AlgLib\alglibmisc.cpp" />
+    <ClCompile Include="AlgLib\ap.cpp" />
+    <ClCompile Include="AlgLib\dataanalysis.cpp" />
+    <ClCompile Include="AlgLib\diffequations.cpp" />
+    <ClCompile Include="AlgLib\fasttransforms.cpp" />
+    <ClCompile Include="AlgLib\integration.cpp" />
+    <ClCompile Include="AlgLib\interpolation.cpp" />
+    <ClCompile Include="AlgLib\linalg.cpp" />
+    <ClCompile Include="AlgLib\optimization.cpp" />
+    <ClCompile Include="AlgLib\solvers.cpp" />
+    <ClCompile Include="AlgLib\specialfunctions.cpp" />
+    <ClCompile Include="AlgLib\statistics.cpp" />
     <ClCompile Include="PolyLib\ACore.cpp" />
     <ClCompile Include="PolyLib\ACorePolyLib.cpp" />
     <ClCompile Include="PolyLib\ACoreSolver.cpp" />
@@ -117,6 +144,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Tests\Tests.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

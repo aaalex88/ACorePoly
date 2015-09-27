@@ -16,25 +16,28 @@ namespace ACorePolyLib
 	{
 	}
 
-	void DescriptionBuilder::LinearOptimize(SegmentDescription & result, const SegmentOptParams & opt, const Signal & signal)
+	bool DescriptionBuilder::LinearOptimize(SegmentDescription & result, const SegmentOptParams & opt, const Signal & signal)
 	{
 		result.Reset();
 		SegmentSolver s(opt, signal.GetDesc());
 		int dim = s.GetDim();
 
 		if (dim == 0)
-			return;
+			return false;
 
 		int N = signal.GetDesc().N;
-		double* basis =new double(dim * N);
+		double* basis =new double[dim * N];
 		s.FillBasis(N, basis);
-		double * res = optimise(N, dim, basis, signal.GetData());
-		result = s.ReadResult(res);
 
+		double * res = new double[dim];
+
+		bool retStatus = decompose(N, dim, basis, signal.GetData(), res);
+
+		result = s.ReadResult(res);
 		delete[] basis;
 		delete[] res;
 
-		return;
+		return retStatus;
 	}
 
 }

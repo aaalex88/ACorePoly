@@ -19,6 +19,18 @@
     <Filter Include="Файлы исходного кода\PolyLib">
       <UniqueIdentifier>{7a3e5976-846b-47d9-ba1c-5f21b397917f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Файлы исходного кода\Alglib">
+      <UniqueIdentifier>{05c2aef3-21d6-4299-8abd-5d47049604d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Заголовочные файлы\Alglib">
+      <UniqueIdentifier>{ae7b6773-7a70-456c-806c-1ab587dcee6a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Заголовочные файлы\Tests">
+      <UniqueIdentifier>{c5b1edb2-3f9c-4c06-b87c-8b08c8929436}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы исходного кода\Tests">
+      <UniqueIdentifier>{03dfea05-3647-4960-a543-a3a407aaa1e8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -72,6 +84,48 @@
     <ClInclude Include="PolyLib\Optimisation.h">
       <Filter>Заголовочные файлы\PolyLib</Filter>
     </ClInclude>
+    <ClInclude Include="AlgLib\ap.h">
+      <Filter>Заголовочные файлы\Alglib</Filter>
+    </ClInclude>
+    <ClInclude Include="AlgLib\solvers.h">
+      <Filter>Заголовочные файлы\Alglib</Filter>
+    </ClInclude>
+    <ClInclude Include="AlgLib\interpolation.h">
+      <Filter>Заголовочные файлы\Alglib</Filter>
+    </ClInclude>
+    <ClInclude Include="AlgLib\integration.h">
+      <Filter>Заголовочные файлы\Alglib</Filter>
+    </ClInclude>
+    <ClInclude Include="AlgLib\fasttransforms.h">
+      <Filter>Заголовочные файлы\Alglib</Filter>
+    </ClInclude>
+    <ClInclude Include="AlgLib\diffequations.h">
+      <Filter>Заголовочные файлы\Alglib</Filter>
+    </ClInclude>
+    <ClInclude Include="AlgLib\optimization.h">
+      <Filter>Заголовочные файлы\Alglib</Filter>
+    </ClInclude>
+    <ClInclude Include="AlgLib\specialfunctions.h">
+      <Filter>Заголовочные файлы\Alglib</Filter>
+    </ClInclude>
+    <ClInclude Include="AlgLib\dataanalysis.h">
+      <Filter>Заголовочные файлы\Alglib</Filter>
+    </ClInclude>
+    <ClInclude Include="AlgLib\statistics.h">
+      <Filter>Заголовочные файлы\Alglib</Filter>
+    </ClInclude>
+    <ClInclude Include="AlgLib\linalg.h">
+      <Filter>Заголовочные файлы\Alglib</Filter>
+    </ClInclude>
+    <ClInclude Include="AlgLib\alglibmisc.h">
+      <Filter>Заголовочные файлы\Alglib</Filter>
+    </ClInclude>
+    <ClInclude Include="AlgLib\alglibinternal.h">
+      <Filter>Заголовочные файлы\Alglib</Filter>
+    </ClInclude>
+    <ClInclude Include="Tests\Tests.h">
+      <Filter>Заголовочные файлы\Tests</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -118,6 +172,48 @@
     </ClCompile>
     <ClCompile Include="PolyLib\Optimisation.cpp">
       <Filter>Файлы исходного кода\PolyLib</Filter>
+    </ClCompile>
+    <ClCompile Include="AlgLib\ap.cpp">
+      <Filter>Файлы исходного кода\Alglib</Filter>
+    </ClCompile>
+    <ClCompile Include="AlgLib\solvers.cpp">
+      <Filter>Файлы исходного кода\Alglib</Filter>
+    </ClCompile>
+    <ClCompile Include="AlgLib\interpolation.cpp">
+      <Filter>Файлы исходного кода\Alglib</Filter>
+    </ClCompile>
+    <ClCompile Include="AlgLib\integration.cpp">
+      <Filter>Файлы исходного кода\Alglib</Filter>
+    </ClCompile>
+    <ClCompile Include="AlgLib\fasttransforms.cpp">
+      <Filter>Файлы исходного кода\Alglib</Filter>
+    </ClCompile>
+    <ClCompile Include="AlgLib\diffequations.cpp">
+      <Filter>Файлы исходного кода\Alglib</Filter>
+    </ClCompile>
+    <ClCompile Include="AlgLib\optimization.cpp">
+      <Filter>Файлы исходного кода\Alglib</Filter>
+    </ClCompile>
+    <ClCompile Include="AlgLib\specialfunctions.cpp">
+      <Filter>Файлы исходного кода\Alglib</Filter>
+    </ClCompile>
+    <ClCompile Include="AlgLib\dataanalysis.cpp">
+      <Filter>Файлы исходного кода\Alglib</Filter>
+    </ClCompile>
+    <ClCompile Include="AlgLib\statistics.cpp">
+      <Filter>Файлы исходного кода\Alglib</Filter>
+    </ClCompile>
+    <ClCompile Include="AlgLib\linalg.cpp">
+      <Filter>Файлы исходного кода\Alglib</Filter>
+    </ClCompile>
+    <ClCompile Include="AlgLib\alglibmisc.cpp">
+      <Filter>Файлы исходного кода\Alglib</Filter>
+    </ClCompile>
+    <ClCompile Include="AlgLib\alglibinternal.cpp">
+      <Filter>Файлы исходного кода\Alglib</Filter>
+    </ClCompile>
+    <ClCompile Include="Tests\Tests.cpp">
+      <Filter>Файлы исходного кода\Tests</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

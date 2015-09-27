@@ -1,6 +1,8 @@
 #include <stdafx.h>
 
 #include "ACoreSolver.h"
+#include <math.h>
+#include <algorithm>
 
 namespace ACorePolyLib
 {
@@ -15,9 +17,9 @@ namespace ACorePolyLib
 		m_core.SetOptParams(optParams);
 
 		double maxFr = 1.0 / m_desc.dt * 2;
-		int maxPossibleAmpl =  maxFr / optParams.freq.MaxValueOnSegment(0, 1, 0.01);
-		int numAmpl = min(maxPossibleAmpl, optParams.maxAmpl);
-		int numExistingAmpl = min((int)m_core.ampl.size(), numAmpl);
+		int maxPossibleAmpl =  (int)(maxFr / optParams.freq.MaxValueOnSegment(0, 1, 0.01));
+		int numAmpl = (std::min)(maxPossibleAmpl, optParams.maxAmpl);
+		int numExistingAmpl = (std::min)((int)m_core.ampl.size(), numAmpl);
 
 		m_core.ampl.resize(numAmpl);
 		m_core.phases.resize(numAmpl, 0);
@@ -41,7 +43,7 @@ namespace ACorePolyLib
 	int ACoreSolver::GetDim() const
 	{
 		int res = 0;
-		for (int i = 0; i < m_amplSolvers.size(); ++i)
+		for (size_t i = 0; i < m_amplSolvers.size(); ++i)
 		{
 			res += m_amplSolvers[i]->GetDim();
 		}
@@ -54,7 +56,7 @@ namespace ACorePolyLib
 		Signal phase(SignalDescription(N, 1.0 / double(N), 0));
 		m_core.freq.Integrate().FillSignal(phase);
 
-		for (int i = 0; i < m_amplSolvers.size(); ++i)
+		for (size_t i = 0; i < m_amplSolvers.size(); ++i)
 		{
 			m_amplSolvers[i]->FillBasis(N, phase.GetData(), i+1, basis);
 			basis += N * m_amplSolvers[i]->GetDim();
@@ -63,7 +65,7 @@ namespace ACorePolyLib
 
 	void ACoreSolver::ReadResults(const double * res)
 	{
-		for (int i = 0; i < m_amplSolvers.size(); ++i)
+		for (size_t i = 0; i < m_amplSolvers.size(); ++i)
 		{
 			m_amplSolvers[i]->ReadResults(res);
 			res += m_amplSolvers[i]->GetDim();

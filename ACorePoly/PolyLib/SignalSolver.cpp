@@ -37,6 +37,7 @@ namespace ACorePolyLib
 
 	shared_ptr<SegmentDescription> SignalSolver::Solve(const SegmentOptParams & startParams, const Signal & s) const
 	{
+		/*
 		SegmentOptParamsDesc desc = startParams.GetDescription();
 		vector<double> st_x = startParams.GetOptData();
 		SegmentDescription seg;
@@ -54,23 +55,26 @@ namespace ACorePolyLib
 		shared_ptr<SegmentDescription> res(new SegmentDescription());
 		builder.LinearOptimize(*res, SegmentOptParams(desc, res_x), s);
 		return res;
+		// */
 
+		throw;
+		return shared_ptr<SegmentDescription>();
 	}
 
 	void SignalSolver::ClearDesc(shared_ptr<SegmentDescription> desc) const
 	{
-		for(int i = 0; i < desc->cores.size(); ++i)
+		for(size_t i = 0; i < desc->cores.size(); ++i)
 		{
 			ClearCore(desc->cores[i]);
 		}
 
-		for(int i = 0; i < desc->cores.size(); ++i)
+/*		for(int i = 0; i < desc->cores.size(); ++i)
 		{
 			if(desc->cores[i].GetNorm() < minCore)
 			{
 				desc->cores.erase(desc->cores.begin()+i, desc->cores.begin()+i);
 			}
-		}
+		} //&*/
 
 	}
 
@@ -78,9 +82,14 @@ namespace ACorePolyLib
 	{
 	}
 
+
+	//*
 	shared_ptr<SegmentDescription> SignalSolver::BlindFind(shared_ptr<Signal> s) const
 	{
-	}
+		shared_ptr<SegmentDescription> res(new SegmentDescription);
+		res->desc = s->GetDesc();
+		return res;
+	}// */
 
 
 }

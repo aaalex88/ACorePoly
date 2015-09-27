@@ -27,7 +27,7 @@ namespace ACorePolyLib
 
 	private:
 		int m_ampPow;
-		int m_ph0;
+		double m_ph0;
 		Polynom & m_result;
 
 	};

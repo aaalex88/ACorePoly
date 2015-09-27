@@ -28,7 +28,7 @@ void GenerMultSignalStatic(int n, ACore * cores, int N, double dt, double * sign
 void GetAmplMultOld(int n, double *baseFr, int N, 
 					double *signal, double *re, double *im, double dt, ACore *cores, int maxAB)
 {
-	int i,j,k;
+	int i,j;
 
 	double *sig_gen,*re_gen,*im_gen;
 	sig_gen=(double*)malloc(N*sizeof(double));
@@ -368,7 +368,7 @@ void GetAmplitudesOPT(int nCores, ACore * cores, int N, double *signal, double d
 void GetAmplitudesOPT(int N, double *signal, double dt, 
 					  double baseFr, double * A, double * B, int maxAB)
 {
-	int i,j,n;
+	int j,n;
 	int numAmpl=2*maxAB+1;
 
 	double * basis = (double *) malloc(N*numAmpl*sizeof(double));

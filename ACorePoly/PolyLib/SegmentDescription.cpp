@@ -11,7 +11,7 @@ namespace ACorePolyLib
 	SegmentOptParams SegmentDescription::GetOptParams() const
 	{
 		SegmentOptParams par;
-		for (int i = 0; i < cores.size(); ++i)
+		for (size_t i = 0; i < cores.size(); ++i)
 			par.param.push_back(cores[i].GetOptParams());
 		return par;
 	}
@@ -19,7 +19,7 @@ namespace ACorePolyLib
 	void SegmentDescription::BuildSignal(Signal & signal) const
 	{
 		signal.Reset();
-		for (int i = 0; i < cores.size(); ++i)
+		for (size_t i = 0; i < cores.size(); ++i)
 		{
 			cores[i].AddToArray(signal.GetData(), signal.GetDesc().N);
 		}

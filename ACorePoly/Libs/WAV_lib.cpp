@@ -217,10 +217,10 @@ int SaveWAV(const char *fName, int len, int sampRate, int bufSize, double *buf)
 //		if(fabs(buf[i])>mx) mx=fabs(buf[i]);
 //	mx*=1.01;
 
-	unsigned char *c;
+//	unsigned char *c;
 	for(i=0;i<bufSize;i++)
 	{
-		val=buf[i] * (2*32768.0); // /mx
+		val= (int)(buf[i] * (2*32768.0)); // /mx
 //		val = val >> 8;
 		iBuf[i]=val;
 	}

@@ -21,7 +21,7 @@ namespace ACorePolyLib
 	{
 		Polynom freq;
 		vector<double> phases;
-		int ampPower;
+		int ampPower; // not in opt params, should be set in acore solver!
 		int maxAmpl;
 
 		ACoreOptParams(const Polynom & _freq, const vector<double> & _phases, int _maxAmpl, int _ampPower);
@@ -63,7 +63,7 @@ namespace ACorePolyLib
 		vector<double> GetOptData() const;
 		SegmentOptParams TimeShift(double shift) const;
 
-		SegmentOptParams & operator+= (const SegmentOptParams & other) const;
+		SegmentOptParams & operator+= (const SegmentOptParams & other);
 	};
 	
 	struct SegmentOptParamsDesc

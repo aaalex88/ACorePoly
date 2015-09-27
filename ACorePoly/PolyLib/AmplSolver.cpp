@@ -31,7 +31,7 @@ namespace ACorePolyLib
 		{
 			for (i = 0; i < N; ++i)
 			{
-				basis[N*m + i] = pow(double(i)/double(N), m) * basis[i];
+				basis[N*m + i] = pow(fdiv(i, N), m) * basis[i];
 			}
 		}
 	}

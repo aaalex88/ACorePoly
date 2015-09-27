@@ -8,8 +8,19 @@ namespace ACorePolyLib
 	
 	bool AlmostZero(double d)
 	{
-		return abs(d) < eps;
+		return fabs(d) < eps;
 	}
+
+	/*
+	int max(int x, int y)
+	{
+		return x > y ? x : y;
+	}
+
+	int min(int x, int y)
+	{
+		return x < y ? x : y;
+	} // */
 
 	double ComputePhase(double cosAmp, double sinAmp)
 	{

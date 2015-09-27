@@ -40,4 +40,8 @@ namespace ACorePolyLib
 	double ComputePhase(double cosAmp, double sinAmp);
 	double Factorial(int n);
 
+	inline double fdiv(int x, int y) { return double(x) / double(y); }
+//	inline int max(int x, int y) { return x > y ? x : y; }
+//	inline int min(int x, int y) { return x < y ? x : y; }
+
 };

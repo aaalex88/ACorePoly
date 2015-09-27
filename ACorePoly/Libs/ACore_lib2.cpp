@@ -160,7 +160,7 @@ void GenerateSignalDynamic(int N, double * signal, double dt, ACoresSignal * cs)
 		phShift[i]=Angle(tempcor.A[i],tempcor.B[i]);
 	ACNorm(&tempcor);
 
-	end=cs->cores[0].t0/dt;//+0.5?
+	end= (int)(cs->cores[0].t0/dt);//+0.5?
 	for(i=0;i<end && i<N;i++)
 	{
 		signal[i]=0;
@@ -181,7 +181,7 @@ void GenerateSignalDynamic(int N, double * signal, double dt, ACoresSignal * cs)
 		 ACNorm(&tc1);
 		 ACNorm(&tc2);
 
-		 end=tc2.t0/dt;
+		 end= (int)(tc2.t0/dt);
 		 for(;i<end && i<N;i++)
 		 {
 			ACMix(&tempcor,&tc1,&tc2,  (tc2.t0-i*dt)/(tc2.t0-tc1.t0)  ,  (i*dt-tc1.t0)/(tc2.t0-tc1.t0) );
@@ -222,7 +222,7 @@ void GenerateSignalDynamicNO(int N, double * signal, double dt, ACoresSignal * c
 	ACore tc;
 
 	double phase;
-	double phShift[ACORE_MAX_ELEM]; // пока не используется
+//	double phShift[ACORE_MAX_ELEM]; // пока не используется
 
 	double l=N*dt;
 	
@@ -235,7 +235,7 @@ void GenerateSignalDynamicNO(int N, double * signal, double dt, ACoresSignal * c
 	for(j=0;j<cs->numCores;j++)
 	{
 		 ACCopy(&tc,cs->cores+j);
-		 end=tc.t2/dt;
+		 end= (int)(tc.t2/dt);
 		 phase=0;
 		 for(;i<end && i<N;i++)
 		 {
@@ -773,7 +773,6 @@ double SignalRestMod(int N, double * signal, double * re, double * im, double dt
 
 void CreateACores(int N, int T, double * signal, double dt, ACoresSignal * cs)
 {
-	int i,j,k;
 	cs->length=N*dt;
 	cs->numCores=N/T;
 	cs->coreMethod=ACORE_METHOD_DEFAULT;
@@ -786,7 +785,7 @@ void CreateACores(int N, int T, double * signal, double dt, ACoresSignal * cs)
 
 	double * re = (double*)malloc(T*sizeof(double));
 	double * im = (double*)malloc(T*sizeof(double));
-	for(i=0;i<cs->numCores;i++)
+	for(int i=0;i<cs->numCores;i++)
 	{
 		fft(T,signal+i*T,re,im);
 		GetACore(T,signal+i*T,re,im,dt,cs->cores+i);
@@ -952,7 +951,7 @@ double dich_eps=0.000000001;
 double DichotomyBaseFreq(int N, double * signal, double * re, double * im, double dt,
 						  double fr_start, double fr_end)
 {
-	int i;
+//	int i;
 
 	/*// MODIF
 	double d=(fr_start+fr_end)*0.00125; //(1/200-я от средн. частоты)

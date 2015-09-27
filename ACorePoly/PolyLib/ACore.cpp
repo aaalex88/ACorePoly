@@ -27,15 +27,17 @@ namespace ACorePolyLib
 		for (int i = 0; i < N; ++i)
 		{
 			double ph = phase(i * dt);
-			for (int k = 0; k < ampl.size(); ++k)
+			for (size_t k = 0; k < ampl.size(); ++k)
 			{
 				arr[i] += ampl[k](i * dt) * cos(phases[k] + (k+1)*ph);
 			}
 		}
 	}
 
-	double ACore::GetNorm()
+	double ACore::GetNorm() const
 	{
+		// TODO: implement!
+		throw std::exception("function ACore::GetNorm have no implementation yet!");
 	}
 
 }

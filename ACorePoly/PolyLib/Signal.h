@@ -10,7 +10,7 @@ namespace ACorePolyLib
 	struct SignalDescription
 	{
 		SignalDescription() : N(0), dt(0), startTime(0) {}
-		SignalDescription(int _N, double _dt, double _st);
+		SignalDescription(int _N, double _dt, double _st) :N(_N), dt(_dt), startTime(_st) {}
 
 		int		N;
 		double	dt;

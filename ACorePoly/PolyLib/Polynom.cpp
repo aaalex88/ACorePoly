@@ -1,5 +1,9 @@
 #include <stdafx.h>
 
+#include <math.h>
+#include <algorithm>
+
+
 #include "Polynom.h"
 #include "PolyLibHelpers.h"
 
@@ -15,6 +19,11 @@ namespace ACorePolyLib
 	Polynom::Polynom(const Polynom & poly)
 	{
 		m_coef = poly.m_coef;
+	}
+
+	Polynom::Polynom(double c)
+	{
+		m_coef.push_back(c);
 	}
 
 	Polynom::Polynom(const vector<double> & coef)
@@ -54,7 +63,7 @@ namespace ACorePolyLib
 			return 0;
 		}
 
-		if (ind >= m_coef.size())
+		if ((unsigned int)ind >= m_coef.size())
 			return 0;
 
 		return m_coef[ind];
@@ -79,14 +88,14 @@ namespace ACorePolyLib
 	int Polynom::Power() const
 	{
 		int pow = m_coef.size() - 1;
-		return max(pow, 0);
+		return (std::max)(pow, 0);
 	}
 
 	double Polynom::operator() (double x) const
 	{
 		double res = 0;
 		double x_pow = 1;
-		for (int i = 0; i < m_coef.size(); ++i, x_pow *= x)
+		for (size_t i = 0; i < m_coef.size(); ++i, x_pow *= x)
 		{
 			res += m_coef[i] * x_pow;
 		}
@@ -98,7 +107,7 @@ namespace ACorePolyLib
 		double res = (*this)(start);
 		for (double x = start + dt; x <= end; x += dt)
 		{
-			res = max(res, (*this)(x));
+			res = fmax(res, (*this)(x));
 		}
 		return res;
 	}
@@ -113,7 +122,7 @@ namespace ACorePolyLib
 	{
 		vector<double> v;
 		v.push_back(0);
-		for (int i = 0; i < m_coef.size(); ++i)
+		for (size_t i = 0; i < m_coef.size(); ++i)
 		{
 			v.push_back(m_coef[i] / double(i+1));
 		}
@@ -123,7 +132,7 @@ namespace ACorePolyLib
 	Polynom Polynom::Differenciate() const
 	{
 		vector<double> v;
-		for (int i = 1; i < m_coef.size(); ++i)
+		for (size_t i = 1; i < m_coef.size(); ++i)
 		{
 			v.push_back(m_coef[i] * i);
 		}
@@ -158,13 +167,11 @@ namespace ACorePolyLib
 
 	void Polynom::AddToSignal(Signal & signal) const
 	{
-		int N = signal.GetDesc().N;
-		double st = signal.GetDesc().startTime;
-		double dt = signal.GetDesc().dt;
+		const SignalDescription & d = signal.GetDesc();
 		double * data = signal.GetData();
-		for (int i = 0; i < N; ++i)
+		for (int i = 0; i < d.N; ++i)
 		{
-			data[i] += (*this)(st + i * dt);
+			data[i] += (*this)(d.startTime + i * d.dt);
 		}
 	}
 
@@ -176,7 +183,12 @@ namespace ACorePolyLib
 	}
 	inline void Polynom::ExpandToIndex(int ind)
 	{
-		while (m_coef.size() <= ind)
+		if (ind < 0) {
+			assert(!"Incorrect input in Polynom::ExpandToIndex function: ind < 0");
+			return;
+		}
+
+		while (m_coef.size() <= (unsigned int)ind)
 			m_coef.push_back(0);
 	}
 

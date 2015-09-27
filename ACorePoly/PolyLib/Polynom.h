@@ -17,6 +17,7 @@ namespace ACorePolyLib
 	public:
 		Polynom();
 		Polynom(const Polynom & poly);
+		Polynom(double c);
 		Polynom(const vector<double> & coef);
 		Polynom(int n, const double * coef);
 		template<typename Iter>

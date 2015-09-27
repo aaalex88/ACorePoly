@@ -48,7 +48,7 @@ const unsigned char reverse256[]= {
 
 void ampl_count(unsigned int N, double * re, double * im, double * x)
 {
-	int i;
+	unsigned int i;
 	for(i=0;i<N;i++)
 		x[i]=sqrt(re[i]*re[i] + im[i]*im[i]);
 }
@@ -63,7 +63,7 @@ void fft_N2_real(unsigned int N, double * x, double * re, double * im) // N = 2^
 	unsigned char *Ic;
     unsigned char *Jc;
 
-	int i,id2,k,m,mpNd2;
+	unsigned int i,id2,k,m,mpNd2;
 	long double WX,WY,TempX,TempY;
 
 	Ic = (unsigned char*) &I;
@@ -134,7 +134,7 @@ void fft_N2_compl(unsigned int N, double * x, double * y, double * re, double * 
 	unsigned char *Ic = (unsigned char*) &I;
     unsigned char *Jc = (unsigned char*) &J;
 
-	int i,id2,k,m,mpNd2;
+	unsigned int i,id2,k,m,mpNd2;
 	long double WX,WY,TempX,TempY;
 
 	for(i=0;i<N;i++)
@@ -204,7 +204,7 @@ void fft_N2_rev(unsigned int N, double * x, double * y, double * re, double * im
 	unsigned char *Ic = (unsigned char*) &I;
     unsigned char *Jc = (unsigned char*) &J;
 
-	int i,id2,k,m,mpNd2;
+	unsigned int i,id2,k,m,mpNd2;
 	long double WX,WY,TempX,TempY;
 
 	for(i=0;i<N;i++)
@@ -276,12 +276,12 @@ void fft_N2_rev(unsigned int N, double * x, double * y, double * re, double * im
 
 void fft_any_real(unsigned int N, double * x, double * re, double * im)
 {
-	int i,j;
+	unsigned int i;
 	double *x2re,*x2im,*w_re,*w_im;
 	long double PI_2_N=PI_2/(long double)N;
 	long double TempX,TempY;
 	int T=0;  //
-	int N_=N; //~T=-1,_N=2N
+	unsigned int N_=N; //~T=-1,_N=2N
 	while(N_)
 	{
 		N_=N_>>1;

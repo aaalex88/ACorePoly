@@ -32,8 +32,8 @@ double MainACore(double * ampl, int N, double step)
 	double core_rel=0;
 	double c,rel;
 
-	int min_i=MIN_HZ/step;
-	int max_i=MAX_HZ/step + 1;
+	int min_i=(int)(MIN_HZ/step);
+	int max_i=(int)(MAX_HZ/step + 1);
 	if(max_i>=N)max_i=N-1; // N/2? // и вообще, в Relevant() вроде проверяется
 	int i,j;
 
@@ -373,8 +373,8 @@ double FindACore(int *peakArr, int maxP, double *frArr, int frN)
 	n1=1;
 	for(i=2;i*peakArr[0]<frN && n1<maxP;i++)
 	{
-		i_st=i*fr_st+0.5;
-		i_en=i*fr_en+0.5;
+		i_st = (int)(i*fr_st+0.5);
+		i_en = (int)(i*fr_en+0.5);
 
 		while(n1<maxP && peakArr[n1]<i_st)n1++;
 		n2=n1;
@@ -416,7 +416,7 @@ double ACoreRandomGenerate(double* gen, int N)
 	double fr = N*(0.005 + 0.005*rand10());
 	for(i=0;i<N;i++)
 		gen[i]=0;
-	int nf=N/(2*fr)-1;
+	int nf=(int)(N/(2*fr)-1);
 	if(nf>30)nf=30;
 //	nf=2;
 	for(j=1;j<nf;j++)
@@ -454,7 +454,7 @@ void ACoreGenerate(double freq, double * gen, double *re, double *im, int N)
 
 
 	int i,j;
-	int nf=double(N/2-0.5)/freq;
+	int nf= (int)(double(N/2-0.5)/freq);
 	double *coefs = (double*)malloc(2*nf*sizeof(double)); // coefs[2*i]=re[i] coefs[2*i+1]=im[i]
 	double *buf   = (double*)malloc(2*N*sizeof(double));
 
@@ -513,9 +513,9 @@ void ACoreGenerateEX(double freq, double * gen, double *ar, int N)
 	
 
 	int i,j;
-	int nf=double(N/2-0.5)/freq;
+	int nf= (int)(double(N/2-0.5)/freq);
 
-	int nn=double(N)/freq * int(freq);// предельный отсчет для разложения
+	int nn= (int)(double(N)/freq * int(freq));// предельный отсчет для разложения
 	
 	double *coefs = (double*)malloc(2*nf*sizeof(double)); // coefs[2*i]=re[i] coefs[2*i+1]=im[i]
 	double *buf   = (double*)malloc(2*N*sizeof(double));
@@ -748,7 +748,7 @@ void ACoreFileMake(WavSound w)
 {
 	double *w_st,*w_en;
 	int i,n;
-	int no_n;
+//	int no_n;
 
 	w_st=w.data;
 	w_en=w.data+w.length;
