@@ -55,6 +55,38 @@ namespace ACorePolyLib
 		return *this;
 	}
 
+	Polynom & Polynom::operator+=(const Polynom & poly)
+	{
+		for (int i = 0; i <= Power(); ++i) {
+			m_coef[i] += poly[i];
+		}
+		for (int i = Power() + 1; i <= poly.Power(); ++i) {
+			m_coef.push_back(poly[i]);
+		}
+		return *this;
+	}
+
+	Polynom & Polynom::operator-=(const Polynom & poly)
+	{
+		for (int i = 0; i <= Power(); ++i) {
+			m_coef[i] -= poly[i];
+		}
+		for (int i = Power() + 1; i <= poly.Power(); ++i) {
+			m_coef.push_back(-poly[i]);
+		}
+		return *this;
+	}
+
+	Polynom Polynom::operator+(const Polynom & poly)
+	{
+		return Polynom(*this) += poly;
+	}
+
+	Polynom Polynom::operator-(const Polynom & poly)
+	{
+		return Polynom(*this) -= poly;
+	}
+
 	double Polynom::operator[] (int ind) const
 	{
 		if (ind < 0)

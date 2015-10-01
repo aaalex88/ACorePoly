@@ -1,5 +1,6 @@
 #include <stdafx.h>
 
+
 #include "SegmentDescription.h"
 #include "ACore.h"
 

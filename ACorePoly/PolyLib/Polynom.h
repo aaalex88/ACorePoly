@@ -26,6 +26,10 @@ namespace ACorePolyLib
 
 		void Reset();
 		Polynom & operator=(const Polynom & poly);
+		Polynom & operator+=(const Polynom & poly);
+		Polynom & operator-=(const Polynom & poly);
+		Polynom operator+(const Polynom & poly);
+		Polynom operator-(const Polynom & poly);
 		// ==,
 		// +,+=,-,-=, *,*=,
 		// + x, - x, ..

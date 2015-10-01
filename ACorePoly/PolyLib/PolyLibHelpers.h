@@ -3,6 +3,8 @@
 
 namespace ACorePolyLib
 {
+	class Polynom;
+	struct ACore;
 
 	class Interface
 	{
@@ -43,5 +45,12 @@ namespace ACorePolyLib
 	inline double fdiv(int x, int y) { return double(x) / double(y); }
 //	inline int max(int x, int y) { return x > y ? x : y; }
 //	inline int min(int x, int y) { return x < y ? x : y; }
+
+
+	double random(double max);
+	double randomRange(double start, double end);
+	
+	void RandomPolynom(Polynom & res, int pow, double startVal, double delta);
+	void RandomCore(ACore & res, double fr, int numAmpl, int ampPower);
 
 };
