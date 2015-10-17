@@ -30,7 +30,7 @@ namespace ACorePolyLib
 		void SetOptParams(const ACoreOptParams & optParams);
 
 		void AddToArray(double * arr, int N) const;
-		double GetNorm() const;
+		double L2Norm() const;
 
 	};
 

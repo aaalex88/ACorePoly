@@ -13,6 +13,11 @@ namespace ACorePolyLib
 		double * res			// result vector [dim] of coeficients of basis vector that gives best approximation of signal
 		);
 
+	bool decomposeAlt(int N, int dim, const double * basis, const double * signal, double * res);
+
+	bool decomposeGSL(int N, int dim, const double * basis, const double * signal, double * res);
+
+
 	//template<typename Fun>
 	//vector<double> minimise(vector<double> & st, Fun f); // double optimize(double *)
 }

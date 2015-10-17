@@ -7,7 +7,7 @@ namespace ACorePolyLib
 
 	struct SegmentDescription
 	{
-		SignalDescription desc;
+		SignalDescription desc; // TODO : there we dont need N/dt; only start/end time. So double st/en will be enough
 		vector<ACore> cores;
 
 		SegmentOptParams GetOptParams() const;

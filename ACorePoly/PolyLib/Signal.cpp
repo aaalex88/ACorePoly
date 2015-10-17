@@ -11,8 +11,10 @@ namespace ACorePolyLib
 	{
 		m_signal = new double[m_desc.N];
 
-		if (m_signal != nullptr)
+		if (m_signal != nullptr) {
 			m_autoDelete = true;
+			Reset();
+		}
 	}
 
 	Signal::Signal(const SignalDescription & desc, double * signal) : m_desc(desc), m_signal(signal), m_autoDelete(false)

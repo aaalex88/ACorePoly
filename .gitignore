@@ -71,3 +71,4 @@ $RECYCLE.BIN/
 
 #Debug directory
 debug/
+*.txt

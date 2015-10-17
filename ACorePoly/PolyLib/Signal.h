@@ -57,7 +57,7 @@ namespace ACorePolyLib
 	template<typename DataStream>
 	void Signal::FillData(int startIndex, int endIndex, DataStream data)
 	{
-		if(startIndex < 0 || endIndex >= m_desc.N) {
+		if(startIndex < 0 || endIndex > m_desc.N) {
 			// assert!!!
 			return;
 		}

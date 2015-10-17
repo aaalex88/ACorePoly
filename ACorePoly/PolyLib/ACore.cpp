@@ -24,7 +24,7 @@ namespace ACorePolyLib
 	{
 		Polynom phase = freq.Integrate();
 		double dt = 1.0 / double(N);
-		for (int i = 0; i < N; ++i)
+		for (int i = 0; i < N; ++i) // TODO : change cycles order?
 		{
 			double ph = phase(i * dt);
 			for (size_t k = 0; k < ampl.size(); ++k)
@@ -34,10 +34,14 @@ namespace ACorePolyLib
 		}
 	}
 
-	double ACore::GetNorm() const
+	double ACore::L2Norm() const
 	{
-		// TODO: implement!
-		throw std::exception("function ACore::GetNorm have no implementation yet!");
+		double res = 0;
+		for (int i = 0; i < ampl.size(); ++i) {
+			res += sqr( ampl[i].L2Norm() );
+		}
+
+		return sqrt(res);
 	}
 
 }

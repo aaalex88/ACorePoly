@@ -16,10 +16,10 @@ namespace ACorePolyLib
 		// TODO: refactoring
 		m_core.SetOptParams(optParams);
 
-		double maxFr = 1.0 / m_desc.dt * 2;
-		int maxPossibleAmpl =  (int)(maxFr / optParams.freq.MaxValueOnSegment(0, 1, 0.01));
+		double maxFr = 1.0 / m_desc.dt * 2; //TODO : dt errors
+		int maxPossibleAmpl =  (int)(maxFr / optParams.freq.MaxValueOnSegment(0, 1, 0.01)); // !!! error with signal descriptions
 		int numAmpl = (std::min)(maxPossibleAmpl, optParams.maxAmpl);
-		int numExistingAmpl = (std::min)((int)m_core.ampl.size(), numAmpl);
+		int numExistingAmpl = (std::min)((int)m_core.phases.size(), numAmpl);
 
 		m_core.ampl.resize(numAmpl);
 		m_core.phases.resize(numAmpl, 0);

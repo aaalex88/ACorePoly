@@ -11,7 +11,7 @@ namespace ACorePolyLib
 		{
 			ACoreOptParams opt(desc.coreDesc[i], data);
 			param.push_back(opt);
-
+			// TODO : Error?!
 		}
 	}
 

@@ -28,22 +28,27 @@ namespace ACorePolyLib
 		Polynom & operator=(const Polynom & poly);
 		Polynom & operator+=(const Polynom & poly);
 		Polynom & operator-=(const Polynom & poly);
-		Polynom operator+(const Polynom & poly);
-		Polynom operator-(const Polynom & poly);
+		Polynom operator+(const Polynom & poly) const;
+		Polynom operator-(const Polynom & poly) const;
+		Polynom operator*(const Polynom & poly) const;
 		// ==,
 		// +,+=,-,-=, *,*=,
 		// + x, - x, ..
 		// ...
+		bool operator== (const Polynom & poly) const;
 
 		double operator[] (int ind) const;
+		void SetCoefNZ(int ind, double val);
 		void SetCoef(int ind, double val);
 		inline int Power() const;
 		double operator() (double x) const;
 		double MaxValueOnSegment(double start, double end, double dt) const; // analitic computing should be realized
 		bool IsNull() const;
 
+		Polynom Sqr() const;
 		Polynom Integrate() const; // defined integral with zero start value
 		Polynom Differenciate() const;
+		double L2Norm() const;
 		Polynom TimeShift(double shift) const;
 
 		void FillSignal(Signal & signal) const;

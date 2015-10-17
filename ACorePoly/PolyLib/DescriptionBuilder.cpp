@@ -31,7 +31,7 @@ namespace ACorePolyLib
 
 		double * res = new double[dim];
 
-		bool retStatus = decompose(N, dim, basis, signal.GetData(), res);
+		bool retStatus = decomposeGSL(N, dim, basis, signal.GetData(), res);
 
 		result = s.ReadResult(res);
 		delete[] basis;

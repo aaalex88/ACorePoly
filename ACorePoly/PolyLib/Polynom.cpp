@@ -77,14 +77,43 @@ namespace ACorePolyLib
 		return *this;
 	}
 
-	Polynom Polynom::operator+(const Polynom & poly)
+	Polynom Polynom::operator+(const Polynom & poly) const
 	{
 		return Polynom(*this) += poly;
 	}
 
-	Polynom Polynom::operator-(const Polynom & poly)
+	Polynom Polynom::operator-(const Polynom & poly) const
 	{
 		return Polynom(*this) -= poly;
+	}
+
+	Polynom Polynom::operator*(const Polynom & poly) const
+	{
+		Polynom res;
+		for (int i = 0; i <= Power() + poly.Power(); ++i) {
+			for (int j = 0; j <= i; ++j) {
+				res.SetCoef(i, res[i] + (*this)[j] * poly[i - j]);
+			}
+		}
+		return res;
+	}
+
+	bool Polynom::operator==(const Polynom & poly) const
+	{
+		int minPow = (std::min)(Power(), poly.Power());
+		int maxPow = (std::max)(Power(), poly.Power());
+		const Polynom & maxPoly = ((*this).Power() == maxPow) ? *this : poly;
+
+		for (int i = 0; i <= minPow; ++i) {
+			if (!AlmostZero((*this)[i] - poly[i]))
+				return false;
+		}
+		for (int i = minPow + 1; i <= maxPow; ++i) {
+			if (!AlmostZero(maxPoly[i]))
+				return false;
+		}
+
+		return true;
 	}
 
 	double Polynom::operator[] (int ind) const
@@ -101,7 +130,7 @@ namespace ACorePolyLib
 		return m_coef[ind];
 	}
 
-	void Polynom::SetCoef(int ind, double val)
+	void Polynom::SetCoefNZ(int ind, double val) // TODO : delete function?
 	{
 		if (ind < 0)
 		{
@@ -117,6 +146,19 @@ namespace ACorePolyLib
 		DeleteTopZeros();
 	}
 
+	void Polynom::SetCoef(int ind, double val)
+	{
+		if (ind < 0) { // TODO : dublicated code
+			assert(!"Polynom::SetCoef : negative index");
+			return;
+		}
+		if (ind > Power() && val == 0.0)
+			return;
+
+		ExpandToIndex(ind);
+		m_coef[ind] = val;
+	}
+
 	int Polynom::Power() const
 	{
 		int pow = m_coef.size() - 1;
@@ -126,10 +168,9 @@ namespace ACorePolyLib
 	double Polynom::operator() (double x) const
 	{
 		double res = 0;
-		double x_pow = 1;
-		for (size_t i = 0; i < m_coef.size(); ++i, x_pow *= x)
+		for (size_t i = 0; i < m_coef.size(); ++i)
 		{
-			res += m_coef[i] * x_pow;
+			res += m_coef[i] * pow(x, i);
 		}
 		return res;
 	}
@@ -137,7 +178,7 @@ namespace ACorePolyLib
 	double Polynom::MaxValueOnSegment(double start, double end, double dt) const
 	{
 		double res = (*this)(start);
-		for (double x = start + dt; x <= end; x += dt)
+		for (double x = start; x <= end; x += dt)
 		{
 			res = fmax(res, (*this)(x));
 		}
@@ -149,6 +190,11 @@ namespace ACorePolyLib
 		return m_coef.size() == 0;
 	}
 
+
+	Polynom Polynom::Sqr() const
+	{
+		return *this * *this;
+	}
 
 	Polynom Polynom::Integrate() const
 	{
@@ -169,6 +215,13 @@ namespace ACorePolyLib
 			v.push_back(m_coef[i] * i);
 		}
 		return Polynom(v);
+	}
+
+	double Polynom::L2Norm() const
+	{
+		double sq = fabs( (*this).Sqr().Integrate()(1.0) );
+		double res = sqrt(sq);
+		return res;
 	}
 
 	Polynom Polynom::TimeShift(double shift) const
@@ -194,7 +247,7 @@ namespace ACorePolyLib
 			double res = (*this)( st + ind * dt );
 			ind++;
 			return res;
-		});
+		}); // TODO : Test! are we sure it works correct?
 	}
 
 	void Polynom::AddToSignal(Signal & signal) const
