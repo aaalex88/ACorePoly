@@ -58,4 +58,6 @@ namespace ACorePolyLib
 	void RandomCoreLowVary(ACore & res, double fr, int numAmpl, int ampPower);
 	void RandomCore(ACore & res, double fr, int numAmpl, int ampPower);
 
+	double CompareACoreAmpls(const ACorePolyLib::ACore c1, const ACorePolyLib::ACore c2);
+
 };

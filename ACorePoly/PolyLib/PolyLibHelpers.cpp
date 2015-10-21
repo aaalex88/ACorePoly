@@ -1,5 +1,6 @@
 #include <stdafx.h>
 #include <math.h>
+#include <algorithm>
 #include <random>
 
 #include "PolyLibHelpers.h"
@@ -139,6 +140,26 @@ namespace ACorePolyLib
 			RandomPolynom(ampl, ampPower, 10.0, 3.0);
 			res.ampl.push_back(ampl);
 		}
+	}
+
+	double CompareACoreAmpls(const ACorePolyLib::ACore c1, const ACorePolyLib::ACore c2)
+	{
+		double diff = 0;
+
+		int minCores = (std::min)(c1.ampl.size(), c2.ampl.size());
+		int maxCores = (std::max)(c1.ampl.size(), c2.ampl.size());
+		const ACorePolyLib::ACore & bigCore = (c1.ampl.size() == maxCores) ? c1 : c2;
+
+		for (int i = 0; i < minCores; ++i) {
+			diff += sqr((c1.ampl[i] - c2.ampl[i]).L2Norm());
+			// L2-norm, TODO : make Polynom Function
+		}
+
+		for (int i = minCores; i < maxCores; ++i) {
+			diff += sqr(bigCore.ampl[i].L2Norm());
+		}
+
+		return sqrt(diff);
 	}
 
 };

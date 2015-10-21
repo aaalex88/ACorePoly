@@ -212,5 +212,11 @@
     <ClCompile Include="Tests\Tests.cpp">
       <Filter>Файлы исходного кода\Tests</Filter>
     </ClCompile>
+    <ClCompile Include="Tests\DecomposeTests.cpp">
+      <Filter>Файлы исходного кода\Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="Tests\PolynomTests.cpp">
+      <Filter>Файлы исходного кода\Tests</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
