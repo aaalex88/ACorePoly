@@ -100,6 +100,7 @@ namespace ACorePolyLib
 	}
 
 	double Signal::GetNorm() const
+		// TODO : rename to L2Norm()?
 	{
 		double res = 0;
 

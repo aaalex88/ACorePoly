@@ -1,7 +1,10 @@
 #include <stdafx.h>
+#include <memory>
 #include <math.h>
 #include <algorithm>
 #include <random>
+#include <tuple>
+#include <functional>
 
 #include "PolyLibHelpers.h"
 #include "Polynom.h"
@@ -142,24 +145,55 @@ namespace ACorePolyLib
 		}
 	}
 
-	double CompareACoreAmpls(const ACorePolyLib::ACore c1, const ACorePolyLib::ACore c2)
+	/// tuple<double, double> - (coresDiff, maxAmplDiff)
+	std::tuple<double, double> CompareACoreAmpls(const ACorePolyLib::ACore c1, const ACorePolyLib::ACore c2)
+		/// tuple<double, double> - (coresDiff, maxAmplDiff)
 	{
-		double diff = 0;
+		double coresDiffSq = 0;
+		double maxAmplDiffSq = 0;
 
-		int minCores = (std::min)(c1.ampl.size(), c2.ampl.size());
-		int maxCores = (std::max)(c1.ampl.size(), c2.ampl.size());
-		const ACorePolyLib::ACore & bigCore = (c1.ampl.size() == maxCores) ? c1 : c2;
+		int minAmpls = (std::min)(c1.ampl.size(), c2.ampl.size());
+		int maxAmpls = (std::max)(c1.ampl.size(), c2.ampl.size());
+		const ACorePolyLib::ACore & bigCore = (c1.ampl.size() == maxAmpls) ? c1 : c2;
 
-		for (int i = 0; i < minCores; ++i) {
-			diff += sqr((c1.ampl[i] - c2.ampl[i]).L2Norm());
+		for (int i = 0; i < minAmpls; ++i) {
+			double diffNormSq = sqr((c1.ampl[i] - c2.ampl[i]).L2Norm());
+			coresDiffSq += diffNormSq;
+			maxAmplDiffSq = (std::max)(maxAmplDiffSq, diffNormSq);
 			// L2-norm, TODO : make Polynom Function
 		}
 
-		for (int i = minCores; i < maxCores; ++i) {
-			diff += sqr(bigCore.ampl[i].L2Norm());
+		for (int i = minAmpls; i < maxAmpls; ++i) {
+			double amplNormSq = sqr(bigCore.ampl[i].L2Norm());
+			coresDiffSq += amplNormSq;
+			maxAmplDiffSq = (std::max)(maxAmplDiffSq, amplNormSq);
 		}
 
-		return sqrt(diff);
+		return tuple<double, double>(sqrt(coresDiffSq), sqrt(maxAmplDiffSq));
+	}
+
+	//template<typename T>
+	//T PrintToFile(const char * filename, function<T(FILE*)> printer)
+	//{
+	//	FILE * f = nullptr; // TODO : unique_ptr<FILE> OpenFile(fName, mode)
+	//	fopen_s(&f, filename, "w");
+	//	if (!f) {
+	//		throw std::runtime_error("Could not open file");
+	//	}
+	//	unique_ptr<FILE> pf(f,fclose);
+
+	//	return printer(pf);
+	//}
+
+	void PrintToFile(const char * filename, function<void(FILE*)> printer)
+	{
+		FILE * f = nullptr;
+		fopen_s(&f, filename, "w");
+		if (!f) {
+
+		}
+		printer(f);
+		fclose(f);
 	}
 
 };

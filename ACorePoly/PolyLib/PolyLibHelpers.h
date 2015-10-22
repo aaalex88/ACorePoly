@@ -1,5 +1,7 @@
 #pragma once
 
+#include <tuple>
+#include <functional>
 
 namespace ACorePolyLib
 {
@@ -58,6 +60,22 @@ namespace ACorePolyLib
 	void RandomCoreLowVary(ACore & res, double fr, int numAmpl, int ampPower);
 	void RandomCore(ACore & res, double fr, int numAmpl, int ampPower);
 
-	double CompareACoreAmpls(const ACorePolyLib::ACore c1, const ACorePolyLib::ACore c2);
+	std::tuple<double, double> CompareACoreAmpls(const ACorePolyLib::ACore c1, const ACorePolyLib::ACore c2);
+
+	
+	template<typename T>
+	T PrintToFile(const char * filename, std::function<T(FILE*)> printer) 
+	{
+		FILE * f = nullptr; // TODO : unique_ptr<FILE> OpenFile(fName, mode)
+		fopen_s(&f, filename, "w");
+		if (!f) {
+			throw std::runtime_error("Could not open file");
+		}
+		unique_ptr<FILE> pf(f, fclose);
+
+		return printer(pf);
+	}
+
+	void PrintToFile(const char * filename, std::function<void(FILE*)> printer);
 
 };

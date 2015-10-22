@@ -37,7 +37,7 @@ namespace ACorePolyLib
 	double ACore::L2Norm() const
 	{
 		double res = 0;
-		for (int i = 0; i < ampl.size(); ++i) {
+		for (size_t i = 0; i < ampl.size(); ++i) {
 			res += sqr( ampl[i].L2Norm() );
 		}
 
