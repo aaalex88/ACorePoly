@@ -24,7 +24,7 @@
 *.app
 
 #Folders
-ACorePoly/AlgLib/
+AlgLib/
 
 # =========================
 # Operating System Files
