@@ -23,6 +23,9 @@
 *.out
 *.app
 
+#Folders
+ACorePoly/AlgLib/
+
 # =========================
 # Operating System Files
 # =========================
