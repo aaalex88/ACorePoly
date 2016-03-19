@@ -23,9 +23,6 @@
 *.out
 *.app
 
-#Folders
-AlgLib/
-
 # =========================
 # Operating System Files
 # =========================
@@ -75,3 +72,7 @@ $RECYCLE.BIN/
 #Debug directory
 debug/
 *.txt
+
+#Folders
+alglib/
+acorepoly/alglib/
